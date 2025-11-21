@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The Paper Void — Tienda</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fff8f0;
+  --accent:#ff6f91;
+  --soft:#ffc8dd;
+  --card:#ffffff;
+  --muted:#6b6b6b;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:var(--bg);
+  color:#222;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+header{
+  background:linear-gradient(90deg,var(--soft),#ffb6b9);
+  padding:18px 12px;
+  text-align:center;
+  font-weight:700;
+  font-size:1.4rem;
+  color:#fff;
+  letter-spacing:1px;
+  box-shadow:0 4px 18px rgba(0,0,0,0.06);
+  position:sticky;
+  top:0;
+  z-index:20;
+}
+main{max-width:1100px;margin:28px auto;padding:0 16px 80px}
+.grid-inicio{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:18px;
+  margin-top:24px;
+}
+.card-inicio{
+  background:linear-gradient(180deg,#fff,#fff);
+  border-radius:16px;
+  padding:34px 18px;
+  text-align:center;
+  box-shadow:0 8px 20px rgba(0,0,0,0.06);
+  cursor:pointer;
+  transition:transform .28s ease, box-shadow .28s ease;
+  border:6px dashed rgba(255,175,200,0.12);
+}
+.card-inicio:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(0,0,0,0.09)}
+.card-inicio h3{margin:6px 0 10px;font-size:1.3rem;color:var(--accent)}
+.card-inicio p{margin:0;color:var(--muted);font-weight:600}
+.titulo{text-align:center;margin:6px 0 18px;color:var(--accent);font-size:1.6rem;font-weight:700;}
+.subtitulo{text-align:center;color:#444;margin:0 0 18px;font-weight:600;}
+.lista{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));margin-top:16px;}
+.card{
+  background:var(--card);
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 6px 18px rgba(0,0,0,0.06);
+  cursor:pointer;
+  transition:transform .22s ease, box-shadow .22s ease;
+  display:flex;
+  flex-direction:column;
+}
+.card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,0.08)}
+.thumb{width:100%;height:150px;object-fit:cover;background:#eee;}
+.card-body{padding:12px 14px;flex:1;display:flex;flex-direction:column;justify-content:space-between}
+.card-body h4{margin:6px 0;color:var(--accent)}
+.card-body p{margin:0;color:var(--muted);font-weight:700}
+.controles{display:flex;gap:10px;align-items:center;justify-content:center;margin-top:18px;}
+.btn{
+  background:linear-gradient(90deg,#fff,#fff);
+  border:0;
+  padding:10px 16px;
+  border-radius:999px;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:0 6px 18px rgba(0,0,0,0.06);
+  transition:transform .18s ease, background .18s;
+}
+.btn:active{transform:translateY(2px)}
+.btn-primary{background:linear-gradient(90deg,var(--accent),#ff8aa6);color:#fff}
+.btn-light{background:var(--soft);color:#333}
+.vista{display:none;animation:fade .32s ease both}
+.vista.activa{display:block}
+@keyframes fade {from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media (max-width:520px){
+  .thumb{height:130px}
+  .card-inicio{padding:26px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <nav style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;">
+    <a href="#inicio" style="color:white;text-decoration:none;font-weight:700;">Inicio</a>
+    <a href="#mision" style="color:white;text-decoration:none;font-weight:700;">Misión y Visión</a>
+    <a href="#productos" style="color:white;text-decoration:none;font-weight:700;">Productos</a>
+    <a href="#contactos" style="color:white;text-decoration:none;font-weight:700;">Contactos</a>  
+    <a href="#personal" style="color:white;text-decoration:none;font-weight:700;">Información Personal</a>
+  </nav>
+</header>
+
+<main>
+  <!-- SECCIÓN INICIO -->
+  <section id="inicio" class="vista activa">
+    <p class="titulo">Bienvenido a The Paper Void</p>
+    <p class="subtitulo">Tu tienda online de papelería, tecnología y accesorios</p>
+  </section>
+
+  <!-- SECCIÓN MISION Y VISION -->
+  <section id="mision" class="vista">
+    <p class="titulo">Misión</p>
+    <p class="subtitulo">Proveer productos de calidad que faciliten el estudio y la creatividad.</p>
+    <p class="titulo">Visión</p>
+    <p class="subtitulo">Ser la tienda líder en papelería y tecnología en línea, reconocida por innovación y servicio.</p>
+  </section>
+
+  <!-- SECCIÓN PRODUCTOS -->
+  <section id="productos" class="vista">
+    <p class="titulo">Nuestros Productos</p>
+    <div class="grid-inicio">
+      <div class="card-inicio" onclick="openCategory('papeleria')">
+        <img src="imagenes/papeleria.jpg" alt="" style="width:100%;height:110px;object-fit:cover;border-radius:10px;margin-bottom:12px">
+        <h3>🖍️ Papelería</h3>
+        <p>Lápices, cuadernos y más</p>
+      </div>
+      <div class="card-inicio" onclick="openCategory('tecnologia')">
+        <img src="imagenes/tecnologia.jpg" alt="" style="width:100%;height:110px;object-fit:cover;border-radius:10px;margin-bottom:12px">
+        <h3>💻 Tecnología</h3>
+        <p>Audífonos, memorias, calculadoras</p>
+      </div>
+      <div class="card-inicio" onclick="openCategory('varios')">
+        <img src="imagenes/varios.jpg" alt="" style="width:100%;height:110px;object-fit:cover;border-radius:10px;margin-bottom:12px">
+        <h3>🎁 Varios</h3>
+        <p>Regalos, stickers y accesorios</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN CONTACTOS -->
+  <section id="contactos" class="vista">
+    <p class="titulo">Contáctanos</p>
+    <p class="subtitulo">Correo: contacto@thepapervoid.com</p>
+    <p class="subtitulo">Teléfono: +593 999 999 999</p>
+    <p class="subtitulo">Dirección: Cuenca, Ecuador</p>
+    <p class="subtitulo">Síguenos en redes: 
+      <a href="#" target="_blank">Facebook</a> | 
+      <a href="#" target="_blank">Instagram</a>
+    </p>
+  </section>
+
+  <!-- SECCIÓN INFORMACIÓN PERSONAL -->
+  <section id="personal" class="vista">
+    <p class="titulo">Información Personal</p>
+  
+    <div style="background:white;padding:20px;border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,0.06);margin-top:18px;">
+      <h3 style="color:var(--accent)">Nombres</h3>
+      <p class="subtitulo">Xavier Tigre</p>
+  
+      <h3 style="color:var(--accent)">Educación</h3>
+      <p class="subtitulo">UCUENCA</p>
+  
+      <h3 style="color:var(--accent)">Preferencias</h3>
+      <p class="subtitulo">Cloud Computing</p>
+  
+      <h3 style="color:var(--accent)">Gustos</h3>
+      <p class="subtitulo">La Comida</p>
+  
+      <h3 style="color:var(--accent)">Deporte Favorito</h3>
+      <p class="subtitulo">Futbol</p>
+    </div>
+  </section>
+
+
+  <!-- VISTAS DE CATEGORÍAS Y PRODUCTOS (de tu tienda) -->
+  <section id="vista-categoria" class="vista">
+    <p id="cat-titulo" class="titulo"></p>
+    <p id="cat-desc" class="subtitulo"></p>
+    <div id="lista-subsecciones" class="lista"></div>
+    <div class="controles">
+      <button class="btn btn-light" onclick="goBack()">⬅️ Volver</button>
+    </div>
+  </section>
+
+  <section id="vista-subseccion" class="vista">
+    <p id="sub-titulo" class="titulo"></p>
+    <p id="sub-desc" class="subtitulo"></p>
+    <div id="lista-productos" class="lista"></div>
+    <div class="controles">
+      <button class="btn btn-light" onclick="goBack()">⬅️ Volver</button>
+      <button class="btn btn-primary" onclick="goHome()">🏠 Ir al inicio</button>
+    </div>
+  </section>
+
+</main>
+
+<script>
+// Datos de la tienda
+const DATA = {
+  papeleria: {
+    title:'Papelería',
+    desc:'Todo para la escuela y creatividad.',
+    subsecciones: {
+      lapices: {
+        title:'Lápices',
+        desc:'Variedad de lápices y sets para dibujar y escribir.',
+        productos: [
+          {name:'Set lápices de colores 12u', price:'$5.50', img:'imagenes/Lapiz.jpg'},
+          {name:'Lápiz grafito HB (pack 5)', price:'$2.50', img:'imagenes/lapizgrafico.jpg'},
+          {name:'Lápices acuarelables 24u', price:'$9.00', img:'imagenes/acaureables.jpg'},
+          {name:'Set premium artísticos', price:'$12.00', img:'imagenes/premiums.jpg'}
+        ]
+      },
+      cuadernos: {
+        title:'Cuadernos',
+        desc:'Cuadernos rayados, cuadriculados, decorados y académicos.',
+        productos: [
+          {name:'Cuaderno rayado 100 hojas', price:'$3.00', img:'imagenes/rayados.jpg'},
+          {name:'Cuaderno cuadriculado 80h', price:'$2.80', img:'imagenes/cuadros.jpg'},
+          {name:'Cuaderno tapa dura ilustrado', price:'$5.50', img:'imagenes/tapadura.jpg'},
+          {name:'Libretona universitario', price:'$6.00', img:'imagenes/universitario.jpg'}
+        ]
+      },
+      carpetas: {
+        title:'Carpetas',
+        desc:'Carpetas organizadoras y fundas para documentos.',
+        productos: [
+          {name:'Carpeta con anillas', price:'$4.00', img:'imagenes/anillas.jpg'},
+          {name:'Carpeta plástica color', price:'$1.80', img:'imagenes/plastica.jpg'},
+          {name:'Portadocumentos zíper', price:'$6.50', img:'imagenes/portadocumentos.jpg'},
+          {name:'Set 3 fundas transparentes', price:'$3.20', img:'imagenes/fundastransparentes.jpg'}
+        ]
+      },
+      marcadores: {
+        title:'Marcadores',
+        desc:'Marcadores permanentes y para pizarras.',
+        productos:[
+          {name:'Pack marcadores punta fina 10u', price:'$6.50', img:'imagenes/puntafina.jpg'},
+          {name:'Marcadores fluorescentes 6u', price:'$4.20', img:'imagenes/flourecentes.jpg'}
+        ]
+      },
+      tijeras: {
+        title:'Tijeras',
+        desc:'Tijeras escolares y de manualidades.',
+        productos:[
+          {name:'Tijeras infantiles', price:'$2.00', img:'imagenes/tijerainfantil.jpg'},
+          {name:'Tijeras profesionales', price:'$7.50', img:'imagenes/borrador.jpg'}
+        ]
+      },
+      borradores: {
+        title:'Borradores',
+        desc:'Gomas y correctores.',
+        productos:[
+          {name:'Borrador clásico', price:'$0.80', img:'imagenes/borrador.jpg'},
+          {name:'Corrector líquido', price:'$1.50', img:'imagenes/corrector.jpg'}
+        ]
+      },
+      mochilas: {
+        title:'Mochilas',
+        desc:'Mochilas escolares y juveniles.',
+        productos:[
+          {name:'Mochila juvenil grande', price:'$22.00', img:'imagenes/mochila.jpg'},
+          {name:'Mochila pequeña estampada', price:'$18.00', img:'imagenes/estampada.jpg'}
+        ]
+      }
+    }
+  },
+
+  tecnologia: {
+    title:'Tecnología',
+    desc:'Gadgets y accesorios para estudiar y trabajar.',
+    subsecciones: {
+      calculadoras: {
+        title:'Calculadoras',
+        desc:'Científicas y básicas.',
+        productos:[
+          {name:'Calculadora científica', price:'$15.00', img:'imagenes/calculadora.jpg'},
+          {name:'Calculadora básica', price:'$6.00', img:'imagenes/cientifica.jpg'}
+        ]
+      },
+      memorias: {
+        title:'Memorias USB',
+        desc:'Pendrives y discos portátiles.',
+        productos:[
+          {name:'USB 32GB', price:'$7.00', img:'imagenes/usb.jpg'},
+          {name:'SSD externo 256GB', price:'$45.00', img:'imagenes/SSD.jpg'}
+        ]
+      },
+      mouse: {
+        title:'Mouse',
+        desc:'Alámbricos e inalámbricos.',
+        productos:[
+          {name:'Mouse inalámbrico', price:'$10.00', img:'imagenes/inalambrico.jpg'},
+          {name:'Mouse gamer RGB', price:'$25.00', img:'imagenes/gamer.jpg'}
+        ]
+      },
+      audifonos: {
+        title:'Audífonos',
+        desc:'Para música y clases en línea.',
+        productos:[
+          {name:'Audífonos on-ear', price:'$12.00', img:'imagenes/on-ear.jpg'},
+          {name:'Audífonos inalámbricos', price:'$28.00', img:'imagenes/audiinalambri.jpg'}
+        ]
+      },
+      impresoras: {
+        title:'Impresoras',
+        desc:'Multifunción y foto.',
+        productos:[
+          {name:'Impresora multifunción', price:'$120.00', img:'imagenes/impresora.jpg'}
+        ]
+      },
+      teclados: {
+        title:'Teclados',
+        desc:'Mecánicos y compactos.',
+        productos:[
+          {name:'Teclado mecánico compacto', price:'$55.00', img:'imagenes/teclado.jpg'},
+          {name:'Teclado inalámbrico', price:'$30.00', img:'imagenes/inalambricoteclado.jpg'}
+        ]
+      }
+    }
+  },
+
+  varios: {
+    title:'Varios',
+    desc:'Accesorios, regalos y decoración.',
+    subsecciones: {
+      stickers: {
+        title:'Stickers',
+        desc:'Pegatinas para decorar.',
+        productos:[
+          {name:'Pack stickers 50u', price:'$3.50', img:'imagenes/stickers.jpg'},
+          {name:'Vinilos decorativos', price:'$7.00', img:'imagenes/vinilos.jpg'}
+        ]
+      },
+      regalos: {
+        title:'Regalos',
+        desc:'Ideas y sets para regalar.',
+        productos:[
+          {name:'Set regalo creativo', price:'$18.00', img:'imagenes/set.jpg'},
+          {name:'Tarjeta de regalo', price:'$10.00', img:'imagenes/tarjeta.jpg'}
+        ]
+      },
+      decoracion: {
+        title:'Decoración',
+        desc:'Objetos para escritorio y habitación.',
+        productos:[
+          {name:'Lampara LED escritorio', price:'$14.00', img:'imagenes/lamparaled.jpg'},
+          {name:'Portalápices temático', price:'$6.50', img:'imagenes/parlantes.jpg'}
+        ]
+      },
+      juegos: {
+        title:'Juegos de escritorio',
+        desc:'Pequeños juegos y organizadores.',
+        productos:[
+          {name:'Rompecabezas mini', price:'$8.00', img:'imagenes/rompecabezas.jpg'}
+        ]
+      },
+      accesorios: {
+        title:'Accesorios escolares',
+        desc:'Broches, pins y más.',
+        productos:[
+          {name:'Set clips y pins', price:'$1.90', img:'imagenes/pins.jpg'}
+        ]
+      }
+    }
+  }
+};
+
+
+// Navegación
+const vistaInicio=document.getElementById('vista-inicio');
+const vistaCategoria=document.getElementById('vista-categoria');
+const vistaSubseccion=document.getElementById('vista-subseccion');
+const listaSub=document.getElementById('lista-subsecciones');
+const listaProd=document.getElementById('lista-productos');
+const catTitulo=document.getElementById('cat-titulo');
+const catDesc=document.getElementById('cat-desc');
+const subTitulo=document.getElementById('sub-titulo');
+const subDesc=document.getElementById('sub-desc');
+const historyStack=[];
+
+function hideAll(){document.querySelectorAll('.vista').forEach(v=>v.classList.remove('activa'))}
+
+function goHome(){
+  historyStack.length=0;
+  hideAll();
+  vistaInicio.classList.add('activa');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function goBack(){
+  const last = historyStack.pop(); // tomar el último del historial
+  if(!last){
+    goHome();
+    return;
+  }
+
+  if(last.type === 'subseccion'){
+    openSubseccion(last.catKey, last.key, false);
+  } 
+  else if(last.type === 'categoria'){
+    openCategory(last.key, false);
+  }
+  else if(last.type === 'productos'){ // nuevo caso para volver a sección Productos
+    hideAll();
+    document.getElementById('productos').classList.add('activa');
+  }
+}
+
+//function goBack(){
+  //historyStack.pop();
+  //const last=historyStack.pop();
+  //if(!last) return goHome();
+  //if(last.type==='categoria') openCategory(last.key,false);
+  //else if(last.type==='subseccion') openSubseccion(last.catKey,last.key,false);
+//}
+
+function openCategory(catKey, push=true){
+  const cat = DATA[catKey];
+  if(!cat) return;
+
+  if(push) {
+    // Guardamos en historial el hecho de que vinimos desde Productos
+    historyStack.push({type:'productos'});
+    historyStack.push({type:'categoria', key:catKey});
+  }
+
+  hideAll();
+  vistaCategoria.classList.add('activa');
+  catTitulo.textContent = cat.title;
+  catDesc.textContent = cat.desc || '';
+  
+  listaSub.innerHTML = '';
+  for(const subKey in cat.subsecciones){
+    const s = cat.subsecciones[subKey];
+    const card = document.createElement('div'); card.className = 'card';
+    const img = document.createElement('img'); img.className = 'thumb';
+    const primer = s.productos ? s.productos[0] : null;
+    img.src = primer && primer.img ? primer.img : 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=800&q=80';
+    img.alt = s.title;
+    const body = document.createElement('div'); body.className='card-body';
+    const h = document.createElement('h4'); h.textContent = s.title;
+    const p = document.createElement('p'); p.textContent = s.desc || '';
+    body.appendChild(h); body.appendChild(p);
+    card.appendChild(img); card.appendChild(body);
+    card.addEventListener('click',()=>openSubseccion(catKey, subKey));
+    listaSub.appendChild(card);
+  }
+
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+//function openCategory(catKey,push=true){
+  //const cat=DATA[catKey];
+  //if(!cat) return;
+  //if(push) historyStack.push({type:'categoria',key:catKey});
+  //hideAll();
+  //vistaCategoria.classList.add('activa');
+  //catTitulo.textContent=cat.title;
+  //catDesc.textContent=cat.desc||'';
+  //listaSub.innerHTML='';
+  //for(const subKey in cat.subsecciones){
+    //const s=cat.subsecciones[subKey];
+    //const card=document.createElement('div'); card.className='card';
+    //const img=document.createElement('img'); img.className='thumb';
+    //const primer=s.productos ? s.productos[0] : null;
+    //img.src=primer&&primer.img?primer.img:'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=800&q=80';
+    //img.alt=s.title;
+    //const body=document.createElement('div'); body.className='card-body';
+    //const h=document.createElement('h4'); h.textContent=s.title;
+    //const p=document.createElement('p'); p.textContent=s.desc||'';
+    //body.appendChild(h); body.appendChild(p);
+    //card.appendChild(img); card.appendChild(body);
+    //card.addEventListener('click',()=>openSubseccion(catKey,subKey));
+    //listaSub.appendChild(card);
+  //}
+  //window.scrollTo({top:0,behavior:'smooth'});
+//}
+
+function openSubseccion(catKey,subKey,push=true){
+  const cat=DATA[catKey];
+  if(!cat) return;
+  const sub=cat.subsecciones[subKey];
+  if(!sub) return;
+  if(push) historyStack.push({type:'subseccion',catKey:catKey,key:subKey});
+  hideAll();
+  vistaSubseccion.classList.add('activa');
+  subTitulo.textContent=sub.title||subKey;
+  subDesc.textContent=sub.desc||'';
+  listaProd.innerHTML='';
+  const productos=sub.productos||[];
+  if(productos.length===0){
+    const no=document.createElement('p');
+    no.style.textAlign='center';
+    no.style.color='var(--muted)';
+    no.textContent='No hay productos en esta subsección por ahora.';
+    listaProd.appendChild(no);
+  } else {
+    productos.forEach(prod=>{
+      const card=document.createElement('div'); card.className='card';
+      const img=document.createElement('img'); img.className='thumb'; img.src=prod.img||'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=800&q=80'; img.alt=prod.name;
+      const body=document.createElement('div'); body.className='card-body';
+      const h=document.createElement('h4'); h.textContent=prod.name;
+      const p=document.createElement('p'); p.textContent=prod.price;
+      body.appendChild(h); body.appendChild(p);
+      card.appendChild(img); card.appendChild(body);
+      listaProd.appendChild(card);
+    });
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+const cart = [];
+
+// Mostrar carrito
+function mostrarCarrito() {
+    let contenido = '';
+    if(cart.length === 0){
+        contenido = 'El carrito está vacío.';
+    } else {
+        let total = 0;
+        cart.forEach((item, i) => {
+            contenido += `${i+1}. ${item.name} - ${item.price}\n`;
+            total += parseFloat(item.price.replace('$',''));
+        });
+        contenido += `\nTotal: $${total.toFixed(2)}`;
+    }
+    alert(contenido);
+}
+
+function openSubseccion(catKey,subKey,push=true){
+    const cat=DATA[catKey];
+    if(!cat) return;
+    const sub=cat.subsecciones[subKey];
+    if(!sub) return;
+    if(push) historyStack.push({type:'subseccion',catKey:catKey,key:subKey});
+    hideAll();
+    vistaSubseccion.classList.add('activa');
+    subTitulo.textContent=sub.title||subKey;
+    subDesc.textContent=sub.desc||'';
+    listaProd.innerHTML='';
+    const productos=sub.productos||[];
+    if(productos.length===0){
+        const no=document.createElement('p');
+        no.style.textAlign='center';
+        no.style.color='var(--muted)';
+        no.textContent='No hay productos en esta subsección por ahora.';
+        listaProd.appendChild(no);
+    } else {
+        productos.forEach(prod=>{
+            const card=document.createElement('div'); card.className='card';
+            const img=document.createElement('img'); img.className='thumb';
+            img.src=prod.img||'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=800&q=80'; 
+            img.alt=prod.name;
+            const body=document.createElement('div'); body.className='card-body';
+            const h=document.createElement('h4'); h.textContent=prod.name;
+            const p=document.createElement('p'); p.textContent=prod.price;
+
+            // BOTÓN AGREGAR AL CARRITO
+            const btn=document.createElement('button');
+            btn.className='btn btn-primary';
+            btn.textContent='🛒 Agregar al carrito';
+            btn.onclick = (e)=>{
+                e.stopPropagation(); // Evita abrir la subsección otra vez
+                cart.push(prod);
+                alert(`${prod.name} agregado al carrito!`);
+            }
+
+            body.appendChild(h);
+            body.appendChild(p);
+            body.appendChild(btn);
+            card.appendChild(img);
+            card.appendChild(body);
+            listaProd.appendChild(card);
+        });
+    }
+
+    // Botón ver carrito
+    const verCarritoBtn = document.createElement('button');
+    verCarritoBtn.className='btn btn-light';
+    verCarritoBtn.textContent='🛒 Ver carrito';
+    verCarritoBtn.style.marginTop='16px';
+    verCarritoBtn.onclick = mostrarCarrito;
+    listaProd.appendChild(verCarritoBtn);
+
+    window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// Menú navegación principal
+document.querySelectorAll('header nav a').forEach(link=>{
+  link.addEventListener('click',e=>{
+    e.preventDefault();
+    const id = link.getAttribute('href').substring(1);
+    hideAll();
+    const seccion = document.getElementById(id);
+    if(seccion) seccion.classList.add('activa');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+</script>
+
+</body>
+</html>
+
+
